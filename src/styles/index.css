@@ -4,7 +4,7 @@
 /* Custom properties */
 :root {
   --color-prim: #181818;
-  --color-sec: #f0f0f0;
+  --color-sec: #e9e9e9;
   --typo-prim: 'Poppins', sans-serif;
   --typo-sec: Helvetica, Arial, sans-serif;
 }
@@ -12,7 +12,7 @@
 /* Dark scheme */
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-prim: #f0f0f0;
+    --color-prim: #e9e9e9;
     --color-sec: #181818;
   }
 }
@@ -35,8 +35,8 @@ html {
 body {
   font-size: 1.6rem;
   font-family: var(--typo-prim);
-  color: var(--color-prim);
-  background-color: var(--color-sec);
+  color: var(--color-sec);
+  background-color: var(--color-prim);
   line-height: 1.5;
   font-weight: 400;
   box-sizing: border-box;
