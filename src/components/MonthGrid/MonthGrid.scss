@@ -1,0 +1,9 @@
+.month-grid {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border: solid 0.13rem #d1d1d1;
+  border-collapse: collapse;
+  table-layout: fixed;
+  color: #2b4865;
+}
