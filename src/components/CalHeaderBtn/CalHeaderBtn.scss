@@ -1,0 +1,23 @@
+.cal-header-btn {
+  display: flex;
+  gap: 1rem;
+  font-size: 1.8rem;
+
+  .fa {
+    display: flex;
+    color: #2b4865;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50px;
+    background-color: transparent;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    &:hover {
+      transition: all 0.5s;
+      color: #f8f8f8;
+      background-color: #256d85;
+    }
+  }
+}
