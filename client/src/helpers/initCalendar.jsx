@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
 import DailyCell from '../components/DailyCell/DailyCell';
 
@@ -42,5 +43,9 @@ function InitCalendar({ date }) {
     </table>
   );
 }
+
+InitCalendar.propTypes = {
+  date: PropTypes.object,
+};
 
 export default InitCalendar;

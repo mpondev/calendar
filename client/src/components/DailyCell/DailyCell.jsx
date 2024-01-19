@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
 
 import './DailyCell.scss';
@@ -17,5 +18,9 @@ function DailyCell({ day }) {
     </td>
   );
 }
+
+DailyCell.propTypes = {
+  day: PropTypes.object,
+};
 
 export default DailyCell;
