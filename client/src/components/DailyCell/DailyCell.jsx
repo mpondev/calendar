@@ -14,7 +14,7 @@ function DailyCell({ day }) {
       <header className={`cal-daily-cell--top ${isCurrentDay}`}>
         <p className="cal-daily-cell--top-day">{day.format('D')}</p>
       </header>
-      <div className="cal-daily-cell--body">Body</div>
+      <div className="cal-daily-cell--body"></div>
     </td>
   );
 }

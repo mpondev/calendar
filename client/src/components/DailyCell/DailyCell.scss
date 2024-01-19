@@ -2,31 +2,34 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  border: solid 0.13rem #d1d1d1;
+  border: solid 0.08rem #d1d1d1;
 
   &--top {
     display: flex;
     justify-content: flex-end;
+    padding-top: 0.1rem;
     width: 100%;
-    height: 15%;
-    background: skyblue;
+    height: 20%;
 
     &-day {
+      display: flex;
+      height: 100%;
+      width: 2rem;
       font-size: 1.3rem;
-      margin-right: 0.4rem;
-      background: gold;
+      margin-right: 0.2rem;
+      justify-content: center;
+      align-items: center;
     }
   }
 
   &--body {
     flex: 1;
-    background: red;
   }
 
-  .current-day {
+  .current-day p {
+    display: flex;
     background: #2b4865;
     color: #f8f8f8;
-    border-radius: 100%;
-    width: 2rem;
+    border-radius: 2rem;
   }
 }
