@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types';
+import { useDate } from '../context/DateContext';
 import dayjs from 'dayjs';
 import DailyCell from '../components/DailyCell/DailyCell';
 
 // Function to add days to the calendar
-function InitCalendar({ date }) {
+function InitCalendar() {
+  const { date } = useDate();
   const year = date.year();
   const month = date.month();
   const firstDayMonth = date.date(1).day();

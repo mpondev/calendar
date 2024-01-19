@@ -6,7 +6,12 @@ function CalHeaderGoTo() {
   return (
     <div className="goto-today">
       <div className="goto">
-        <input type="text" placeholder="mm/yyyy" className="date-input"></input>
+        <input
+          type="text"
+          placeholder="mm/yyyy"
+          className="date-input"
+          id="date-input"
+        ></input>
         <button className="goto-btn">
           <FaArrowRight />
         </button>
