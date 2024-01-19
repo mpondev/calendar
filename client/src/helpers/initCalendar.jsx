@@ -2,12 +2,15 @@ import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
 import DailyCell from '../components/DailyCell/DailyCell';
 
+// Function to add days to the calendar
 function InitCalendar({ date }) {
   const year = date.year();
   const month = date.month();
   const firstDayMonth = date.date(1).day();
   let currentMonthCount = 0 - firstDayMonth;
 
+  // FIXME
+  // monthGrid is composed by 6 rows (weeks). Implement 5/6 rows depending the days?
   const monthGrid = new Array(6).fill([]).map(() => {
     return new Array(7).fill(null).map(() => {
       currentMonthCount++;
@@ -23,8 +26,8 @@ function InitCalendar({ date }) {
     <table className="month-grid">
       <thead className="month-grid--head">
         <tr className="weekdays">
-          {weekdays.map((day, i) => (
-            <th className="weekdays--day" key={i}>
+          {weekdays.map(day => (
+            <th className="weekdays--day" key={day}>
               <span className="header-day">{day}</span>
             </th>
           ))}
@@ -34,8 +37,11 @@ function InitCalendar({ date }) {
       <tbody className="month-grid--body">
         {monthGrid.map((row, i) => (
           <tr className="week" key={i}>
-            {row.map((day, idx) => (
-              <DailyCell day={day} key={idx} />
+            {row.map(day => (
+              <DailyCell
+                day={day}
+                key={`${day.year()}${day.month()}${day.date()}`}
+              />
             ))}
           </tr>
         ))}
