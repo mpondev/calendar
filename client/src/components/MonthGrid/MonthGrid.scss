@@ -1,0 +1,39 @@
+.month-grid {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border: solid 0.13rem #d1d1d1;
+  border-collapse: collapse;
+  table-layout: fixed;
+  color: #2b4865;
+
+  &--head {
+    width: 100%;
+    font-size: 1.5rem;
+    font-weight: 100;
+
+    .weekdays {
+      display: flex;
+      width: 100%;
+
+      &--day {
+        width: 100%;
+        border: solid 0.13rem #d1d1d1;
+      }
+    }
+  }
+
+  &--body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex: 1;
+
+    .week {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      flex: 1;
+    }
+  }
+}
