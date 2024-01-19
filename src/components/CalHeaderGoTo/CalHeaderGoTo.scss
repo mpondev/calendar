@@ -1,0 +1,60 @@
+.goto-today {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+
+  .goto {
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    border: solid 1px #2b4865;
+
+    .date-input {
+      position: relative;
+      width: 10rem;
+      height: 2.2rem;
+      left: 0.5rem;
+      outline: none;
+      border: none;
+
+      &::placeholder {
+        color: #2b4865;
+        opacity: 0.6;
+      }
+    }
+
+    &-btn {
+      position: absolute;
+      right: 0;
+      height: 2.2rem;
+      width: 2rem;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+
+      &:hover {
+        transition: all 0.5s;
+        color: #f8f8f8;
+        background-color: #256d85;
+      }
+    }
+  }
+
+  .today-btn {
+    height: 3rem;
+    padding: 0 1rem;
+    border: none;
+    background: transparent;
+    color: #2b4865;
+    font-size: 1.8rem;
+
+    &:hover {
+      transition: all 0.5s;
+      color: #f8f8f8;
+      background-color: #256d85;
+      border-radius: 50px;
+    }
+  }
+}
