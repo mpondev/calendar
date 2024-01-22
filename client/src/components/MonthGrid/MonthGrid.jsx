@@ -6,9 +6,7 @@ import './MonthGrid.scss';
 function MonthGrid() {
   return (
     <div className="month-grid">
-      <DateProvider>
-        <InitCalendar />
-      </DateProvider>
+      <InitCalendar />
     </div>
   );
 }

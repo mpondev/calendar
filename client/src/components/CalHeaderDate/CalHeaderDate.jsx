@@ -1,10 +1,13 @@
+import { useDate } from '../../context/DateContext';
 import dayjs from 'dayjs';
 
 import './CalHeaderDate.scss';
 
 function CalHeaderDate() {
-  const month = dayjs().format('MMM');
-  const year = dayjs().year();
+  const { date } = useDate();
+
+  const month = date.format('MMM');
+  const year = date.year();
 
   return (
     <div className="cal-header-date">

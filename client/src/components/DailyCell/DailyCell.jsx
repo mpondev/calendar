@@ -4,9 +4,11 @@ import dayjs from 'dayjs';
 import './DailyCell.scss';
 
 function DailyCell({ day }) {
+  // Define class for current day
   const isCurrentDay =
     day.format('DD-MM-YY') === dayjs().format('DD-MM-YY') ? 'current-day' : '';
 
+  // Define classes for previous/next month days
   const isPrevMonthDay = day <= dayjs().date(0) ? 'prev-month-day' : '';
   const isNextMonthDay =
     day > dayjs().date(dayjs().daysInMonth()) ? 'next-month-day' : '';

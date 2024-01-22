@@ -7,8 +7,8 @@ import DailyCell from '../components/DailyCell/DailyCell';
 function InitCalendar() {
   const { date } = useDate();
   const year = date.year();
-  const month = date.month();
-  const firstDayMonth = date.date(1).day();
+  const month = date.month(); // 0 = january, 1 = february...
+  const firstDayMonth = date.date(1).day(); // 1 = monday, 2 = tuesday...
   let currentMonthCount = 0 - firstDayMonth;
 
   // FIXME
@@ -20,6 +20,7 @@ function InitCalendar() {
     });
   });
 
+  // Get weekdays names
   const weekdays = new Array(7).fill(null).map((_, i) => {
     return dayjs().day(i).format('ddd');
   });
