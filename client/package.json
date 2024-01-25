@@ -3,6 +3,7 @@
   "homepage": "https://calendar.mpondev.com",
   "private": true,
   "version": "1.0.0",
+  "description": "Calendar",
   "type": "module",
   "scripts": {
     "dev": "vite",
