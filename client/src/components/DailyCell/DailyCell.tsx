@@ -1,5 +1,8 @@
 import dayjs from 'dayjs';
+
+import Task from '../Task/Task';
 import { useDateStore } from '../../store/dateStore';
+import { mockTasks } from '../../data/fakeData';
 
 import styles from './DailyCell.module.css';
 
@@ -30,7 +33,23 @@ function DailyCell({ day }: Props): JSX.Element {
             {day.format('D')}
           </p>
         </header>
-        <div className={styles.body}></div>
+        <div className={styles.body}>
+          {mockTasks.map(task => {
+            if (
+              dayjs(task.start).format('DD-MM-YY') === day.format('DD-MM-YY')
+            ) {
+              return (
+                <Task
+                  // _id={task._id}
+                  {...task}
+                  key={task._id}
+                  start={dayjs(task.start).format('HH:mm')}
+                  title={task.title}
+                />
+              );
+            }
+          })}
+        </div>
       </div>
     </td>
   );

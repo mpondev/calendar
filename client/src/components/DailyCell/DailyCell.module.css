@@ -1,5 +1,6 @@
 .dailyCell {
   border: 1px solid #d1d1d1;
+  white-space: nowrap;
 
   &.currentDay {
     background-color: #256d8516;
@@ -9,6 +10,7 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+    overflow: scroll;
 
     .top {
       display: flex;
@@ -26,6 +28,9 @@
     .body {
       flex: 1;
       margin: 0 0.2rem;
+      display: flex;
+      flex-direction: column;
+      overflow-y: scroll;
     }
   }
 }
