@@ -1,8 +1,16 @@
 .grid {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  border: solid 0.13rem #dddddd;
-  border-collapse: collapse;
-  table-layout: fixed;
+  font-size: 1.4rem;
+
+  th {
+    border: 1px solid #d1d1d1;
+  }
+
+  .table {
+    table-layout: fixed;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #d1d1d1;
+    border-collapse: collapse;
+  }
 }
