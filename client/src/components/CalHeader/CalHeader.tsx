@@ -1,31 +1,43 @@
 import dayjs from 'dayjs';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6';
+import { useDateStore } from '../../store/dateStore';
 
 import styles from './CalHeader.module.css';
 
 function CalHeader(): JSX.Element {
-  const month: string = dayjs().format('MMMM');
-  const year: number = dayjs().year();
+  const { date, setDate } = useDateStore();
+
+  function handlePrev(): void {
+    setDate(dayjs(date).subtract(1, 'month'));
+  }
+
+  function handleNext(): void {
+    setDate(dayjs(date).add(1, 'month'));
+  }
+
+  function handleToday(): void {
+    setDate(dayjs());
+  }
 
   return (
     <div className={styles.header}>
       <div className={styles.moveTo}>
         <div className={styles.btnGroup}>
-          <button title="Previous month">
+          <button onClick={handlePrev} title="Previous month">
             <FaAngleLeft className={styles.fa} />
           </button>
-          <button title="Next month">
+          <button onClick={handleNext} title="Next month">
             <FaAngleRight className={styles.fa} />
           </button>
         </div>
-        <button title="Today" className={styles.today}>
+        <button onClick={handleToday} title="Today" className={styles.today}>
           today
         </button>
       </div>
 
       <div className={styles.date}>
         <h2>
-          {month} {year}
+          {date.format('MMM')} {date.year()}
         </h2>
       </div>
 
