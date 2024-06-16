@@ -1,8 +1,12 @@
+import dayjs from 'dayjs';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6';
 
 import styles from './CalHeader.module.css';
 
 function CalHeader(): JSX.Element {
+  const month: string = dayjs().format('MMMM');
+  const year: number = dayjs().year();
+
   return (
     <div className={styles.header}>
       <div className={styles.moveTo}>
@@ -20,7 +24,9 @@ function CalHeader(): JSX.Element {
       </div>
 
       <div className={styles.date}>
-        <h2>April 2024</h2>
+        <h2>
+          {month} {year}
+        </h2>
       </div>
 
       <div>
