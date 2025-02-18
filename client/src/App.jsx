@@ -1,5 +1,11 @@
+import CalContainer from './components/CalContainer';
+
 function App() {
-  return <div>MERN project</div>;
+  return (
+    <div className="flex h-screen w-screen">
+      <CalContainer />
+    </div>
+  );
 }
 
 export default App;
