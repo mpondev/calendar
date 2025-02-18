@@ -1,6 +1,10 @@
+import dayjs from 'dayjs';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6';
 
 const CalHeader = () => {
+  const month = dayjs().format('MMM');
+  const year = dayjs().year();
+
   return (
     <div className="mb-4 flex w-full items-center justify-between p-4">
       <div className="flex gap-4">
@@ -27,7 +31,9 @@ const CalHeader = () => {
       </div>
 
       <div className="text-4xl leading-12 text-slate-700">
-        <h2>March 2025</h2>
+        <h2>
+          {month} {year}
+        </h2>
       </div>
 
       <div className="">
