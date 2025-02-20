@@ -1,5 +1,7 @@
-import dayjs from 'dayjs';
+import { NavLink } from 'react-router';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6';
+import dayjs from 'dayjs';
+
 import { useDateStore } from '../store/dateStore';
 
 const CalHeader = () => {
@@ -52,30 +54,34 @@ const CalHeader = () => {
       </div>
 
       <div className="">
-        <button
-          className="cursor-pointer rounded-tl-md  rounded-bl-md border-1  border-slate-700 bg-slate-700 px-2 py-2 text-center align-middle text-lg text-white hover:border-slate-900 hover:bg-slate-800"
+        <NavLink
+          to="/month"
+          className="cursor-pointer rounded-tl-md  rounded-bl-md border-1  border-slate-700 bg-slate-700 px-2 py-2 text-center align-middle text-lg text-white hover:border-slate-900 hover:bg-slate-800 [&.active]:border-slate-900 [&.active]:bg-slate-800"
           title="Month view"
         >
           month
-        </button>
-        <button
-          className="cursor-pointer border-1  border-slate-700 bg-slate-700 px-2 py-2 text-center align-middle text-lg text-white hover:border-slate-900 hover:bg-slate-800"
+        </NavLink>
+        <NavLink
+          to="/week"
+          className="cursor-pointer border-1  border-slate-700 bg-slate-700 px-2 py-2 text-center align-middle text-lg text-white hover:border-slate-900 hover:bg-slate-800 [&.active]:border-slate-900 [&.active]:bg-slate-800"
           title="Week view"
         >
           week
-        </button>
-        <button
-          className="cursor-pointer border-1  border-slate-700 bg-slate-700 px-2 py-2 text-center align-middle text-lg text-white hover:border-slate-900 hover:bg-slate-800"
+        </NavLink>
+        <NavLink
+          to="/day"
+          className="cursor-pointer border-1  border-slate-700 bg-slate-700 px-2 py-2 text-center align-middle text-lg text-white hover:border-slate-900 hover:bg-slate-800 [&.active]:border-slate-900 [&.active]:bg-slate-800"
           title="Day view"
         >
           day
-        </button>
-        <button
-          className="cursor-pointer rounded-tr-md  rounded-br-md border-1  border-slate-700 bg-slate-700 px-2 py-2 text-center align-middle text-lg text-white hover:border-slate-900 hover:bg-slate-800"
+        </NavLink>
+        <NavLink
+          to="/list"
+          className="cursor-pointer rounded-tr-md  rounded-br-md border-1  border-slate-700 bg-slate-700 px-2 py-2 text-center align-middle text-lg text-white hover:border-slate-900 hover:bg-slate-800 [&.active]:border-slate-900 [&.active]:bg-slate-800"
           title="List view"
         >
           list
-        </button>
+        </NavLink>
       </div>
     </div>
   );

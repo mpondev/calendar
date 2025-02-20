@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import { useDateStore } from '../store/dateStore';
 
-import DailyCell from './DailyCell';
+import DailyCell from '../components/DailyCell';
 
 const MonthGrid = () => {
   const { date } = useDateStore();
