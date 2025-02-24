@@ -1,4 +1,5 @@
 import React from 'react';
+import dayjs from 'dayjs';
 
 import { useDateStore } from '../store/dateStore';
 
@@ -39,7 +40,7 @@ const WeekGrid = () => {
               <td
                 key={day.format('YYYYMMDD')}
                 className={`border-r-1 border-b-2 border-gray-300 text-center first:border-l-1 ${
-                  date.format('DD-MM-YY') === day.format('DD-MM-YY')
+                  day.format('DD-MM-YY') === dayjs().format('DD-MM-YY')
                     ? 'bg-slate-100'
                     : ''
                 }`}
@@ -62,7 +63,7 @@ const WeekGrid = () => {
                   <td
                     key={`${day.format('YYYYMMDD')}${hour}:00`}
                     className={`border-r-1 border-b-1 border-gray-300 text-center first:border-l-1 ${
-                      date.format('DD-MM-YY') === day.format('DD-MM-YY')
+                      day.format('DD-MM-YY') === dayjs().format('DD-MM-YY')
                         ? 'bg-slate-100'
                         : ''
                     }`}
@@ -78,7 +79,7 @@ const WeekGrid = () => {
                   <td
                     key={`${day.format('YYYYMMDD')}${hour}:30`}
                     className={`border-r-1 border-b-1 border-gray-300 text-center first:border-l-1 ${
-                      date.format('DD-MM-YY') === day.format('DD-MM-YY')
+                      day.format('DD-MM-YY') === dayjs().format('DD-MM-YY')
                         ? 'bg-slate-100'
                         : ''
                     }`}

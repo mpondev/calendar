@@ -3,6 +3,8 @@ import { useDateStore } from '../store/dateStore';
 const ListGrid = () => {
   const { date } = useDateStore();
 
+  // Temporary return statement. Once events are implemented, this will be updated by adding events per day to the grid.
+
   return (
     <div className="flex-1 overflow-y-auto shadow-sm">
       <table className="h-full w-full table-fixed border-separate border-spacing-0 border-1 border-gray-300">

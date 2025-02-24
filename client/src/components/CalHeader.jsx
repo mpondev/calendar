@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router';
+import { NavLink, useLocation } from 'react-router';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6';
 import dayjs from 'dayjs';
 
@@ -6,13 +6,22 @@ import { useDateStore } from '../store/dateStore';
 
 const CalHeader = () => {
   const { date, setDate } = useDateStore();
+  const { pathname } = useLocation();
+
+  const weekDay = date.day();
 
   const handlePrev = () => {
-    setDate(dayjs(date).subtract(1, 'month'));
+    pathname === '/month' && setDate(dayjs(date).subtract(1, 'month'));
+    pathname === '/week' ||
+      (pathname === '/list' && setDate(dayjs(date).subtract(1, 'week')));
+    pathname === '/day' && setDate(dayjs(date).subtract(1, 'day'));
   };
 
   const handleNext = () => {
-    setDate(dayjs(date).add(1, 'month'));
+    pathname === '/month' && setDate(dayjs(date).add(1, 'month'));
+    pathname === '/week' ||
+      (pathname === '/list' && setDate(dayjs(date).add(1, 'week')));
+    pathname === '/day' && setDate(dayjs(date).add(1, 'day'));
   };
 
   const handleToday = () => {
@@ -48,9 +57,22 @@ const CalHeader = () => {
       </div>
 
       <div className="text-4xl leading-12 text-slate-700">
-        <h2>
-          {date.format('MMM')} {date.year()}
-        </h2>
+        {pathname === '/month' && (
+          <h2>
+            {date.format('MMM')} {date.year()}
+          </h2>
+        )}
+        {pathname === '/week' ||
+          (pathname === '/list' && (
+            <h2>
+              {dayjs(date.subtract(weekDay, 'day')).format('D-MMM') +
+                ' / ' +
+                dayjs(date.add(6 - weekDay, 'day')).format('D-MMM')}
+            </h2>
+          ))}
+        {pathname === '/day' && (
+          <h2>{dayjs(date.subtract(weekDay, 'day')).format('D-MMM-YYYY')}</h2>
+        )}
       </div>
 
       <div className="">
