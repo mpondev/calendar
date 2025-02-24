@@ -17,7 +17,7 @@ const WeekGrid = () => {
       <table className="h-full w-full table-fixed border-separate border-spacing-0 border-1 border-gray-300">
         <thead className="sticky top-0 bg-white">
           <tr className="h-8">
-            <th className="w-18 border-t-1 border-r-1 border-b-1 border-l-1 border-gray-300"></th>
+            <th className="w-18 border-1 border-gray-300"></th>
 
             {weekGrid.map((day, i) => (
               <th
@@ -30,7 +30,10 @@ const WeekGrid = () => {
 
         <tbody>
           <tr className="h-16 sticky top-8 bg-white">
-            <td className="px-1 border-r-1 border-b-2 border-l-1 border-gray-300 text-center">
+            <td
+              className="px-1 border-r-1 border-b-2 border-l-1 border-gray-300 text-center"
+              style={{ borderBottomStyle: 'double' }}
+            >
               All-day
             </td>
             {weekGrid.map(day => (
@@ -41,6 +44,7 @@ const WeekGrid = () => {
                     ? 'bg-slate-100'
                     : ''
                 }`}
+                style={{ borderBottomStyle: 'double' }}
               ></td>
             ))}
           </tr>
@@ -48,7 +52,10 @@ const WeekGrid = () => {
           {dayHours.map(hour => (
             <React.Fragment key={hour}>
               <tr className="h-8">
-                <td className="border-r-1 border-b-1 border-l-1 border-gray-300 text-center">
+                <td
+                  className="border-r-1 border-b-1 border-l-1 border-gray-300 text-center"
+                  style={{ borderBottomColor: 'oklch(0.928 0.006 264.531)' }}
+                >
                   {hour}:00
                 </td>
 
@@ -60,6 +67,7 @@ const WeekGrid = () => {
                         ? 'bg-slate-100'
                         : ''
                     }`}
+                    style={{ borderBottomColor: 'oklch(0.928 0.006 264.531)' }}
                   ></td>
                 ))}
               </tr>
