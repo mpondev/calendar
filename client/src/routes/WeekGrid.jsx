@@ -1,5 +1,4 @@
 import React from 'react';
-import dayjs from 'dayjs';
 
 import { useDateStore } from '../store/dateStore';
 
