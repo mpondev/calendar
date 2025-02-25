@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
+
 import { useDateStore } from '../store/dateStore.js';
+import Task from './Task.jsx';
+import { mockTasks } from '../data/fakeData.js';
 
 const DailyCell = ({ day }) => {
   const { date } = useDateStore();
@@ -23,7 +26,21 @@ const DailyCell = ({ day }) => {
             {day.format('D')}
           </p>
         </header>
-        <div className="mx-1 flex-1"></div>
+        <div className="mx-1 flex-1">
+          {mockTasks.map(task => {
+            if (
+              dayjs(task.start).format('DD-MM-YY') === day.format('DD-MM-YY')
+            ) {
+              return (
+                <Task
+                  key={task._id}
+                  start={dayjs(task.start).format('HH:mm')}
+                  title={task.title}
+                />
+              );
+            }
+          })}
+        </div>
       </div>
     </td>
   );

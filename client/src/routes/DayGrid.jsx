@@ -1,11 +1,18 @@
 import React from 'react';
+import dayjs from 'dayjs';
 
 import { useDateStore } from '../store/dateStore';
+import Task from '../components/Task';
+import { mockTasks } from '../data/fakeData';
 
 const DayGrid = () => {
   const { date } = useDateStore();
 
   const dayHours = Array.from({ length: 24 }, (_, i) => i);
+
+  const filteredTasks = mockTasks.filter(
+    task => dayjs(task.start).format('DD-MM-YY') === date.format('DD-MM-YY')
+  );
 
   return (
     <div className="flex-1 overflow-y-auto shadow-sm">
@@ -30,7 +37,14 @@ const DayGrid = () => {
             <td
               className="border-r-1 border-b-2 border-gray-300"
               style={{ borderBottomStyle: 'double' }}
-            ></td>
+            >
+              {filteredTasks.map(
+                task =>
+                  dayjs(task.start).format('HH:mm') === '00:00' && (
+                    <Task key={task._id} title={task.title} />
+                  )
+              )}
+            </td>
           </tr>
 
           {dayHours.map(hour => (
@@ -45,12 +59,32 @@ const DayGrid = () => {
                 <td
                   className="border-r-1 border-b-1 border-gray-300"
                   style={{ borderBottomColor: 'oklch(0.928 0.006 264.531)' }}
-                ></td>
+                >
+                  {filteredTasks.map(task => {
+                    if (
+                      dayjs(task.start).format('HH:mm') !== '00:00' &&
+                      dayjs(task.start).format('H') === hour.toString() &&
+                      dayjs(task.start).format('mm') < 30
+                    ) {
+                      return <Task key={task._id} title={task.title} />;
+                    }
+                  })}
+                </td>
               </tr>
 
               <tr className="h-8">
                 <td className="border-r-1 border-b-1 border-l-1 border-gray-300"></td>
-                <td className="border-r-1 border-b-1 border-gray-300"></td>
+                <td className="border-r-1 border-b-1 border-gray-300">
+                  {filteredTasks.map(task => {
+                    if (
+                      dayjs(task.start).format('HH:mm') !== '00:00' &&
+                      dayjs(task.start).format('H') === hour.toString() &&
+                      dayjs(task.start).format('mm') >= 30
+                    ) {
+                      return <Task key={task._id} title={task.title} />;
+                    }
+                  })}
+                </td>
               </tr>
             </React.Fragment>
           ))}

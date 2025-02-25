@@ -12,15 +12,15 @@ const CalHeader = () => {
 
   const handlePrev = () => {
     pathname === '/month' && setDate(dayjs(date).subtract(1, 'month'));
-    pathname === '/week' ||
-      (pathname === '/list' && setDate(dayjs(date).subtract(1, 'week')));
+    (pathname === '/week' || pathname === '/list') &&
+      setDate(dayjs(date).subtract(1, 'week'));
     pathname === '/day' && setDate(dayjs(date).subtract(1, 'day'));
   };
 
   const handleNext = () => {
     pathname === '/month' && setDate(dayjs(date).add(1, 'month'));
-    pathname === '/week' ||
-      (pathname === '/list' && setDate(dayjs(date).add(1, 'week')));
+    (pathname === '/week' || pathname === '/list') &&
+      setDate(dayjs(date).add(1, 'week'));
     pathname === '/day' && setDate(dayjs(date).add(1, 'day'));
   };
 
@@ -70,9 +70,7 @@ const CalHeader = () => {
                 dayjs(date.add(6 - weekDay, 'day')).format('D-MMM')}
             </h2>
           ))}
-        {pathname === '/day' && (
-          <h2>{dayjs(date.subtract(weekDay, 'day')).format('D-MMM-YYYY')}</h2>
-        )}
+        {pathname === '/day' && <h2>{date.format('D-MMM-YYYY')}</h2>}
       </div>
 
       <div className="">

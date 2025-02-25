@@ -2,15 +2,23 @@ import React from 'react';
 import dayjs from 'dayjs';
 
 import { useDateStore } from '../store/dateStore';
+import { mockTasks } from '../data/fakeData';
+import Task from '../components/Task';
 
 const WeekGrid = () => {
   const { date } = useDateStore();
 
   const weekDay = date.day();
-  const weekGrid = Array.from({ length: 7 }, (_, i) => {
-    return date.clone().subtract(weekDay, 'day').add(i, 'day');
-  });
+  const weekGrid = Array.from({ length: 7 }, (_, i) =>
+    date.clone().subtract(weekDay, 'day').add(i, 'day')
+  );
   const dayHours = Array.from({ length: 24 }, (_, i) => i);
+
+  const filteredTasks = mockTasks.filter(task =>
+    weekGrid.some(
+      day => dayjs(task.start).format('DD-MM-YY') === day.format('DD-MM-YY')
+    )
+  );
 
   return (
     <div className="flex-1 overflow-y-auto shadow-sm">
@@ -45,7 +53,17 @@ const WeekGrid = () => {
                     : ''
                 }`}
                 style={{ borderBottomStyle: 'double' }}
-              ></td>
+              >
+                {filteredTasks.map(task => {
+                  if (
+                    dayjs(task.start).format('DD-MM-YY') ===
+                      day.format('DD-MM-YY') &&
+                    dayjs(task.start).format('HH:mm') === '00:00'
+                  ) {
+                    return <Task key={task._id} title={task.title} />;
+                  }
+                })}
+              </td>
             ))}
           </tr>
 
@@ -68,7 +86,27 @@ const WeekGrid = () => {
                         : ''
                     }`}
                     style={{ borderBottomColor: 'oklch(0.928 0.006 264.531)' }}
-                  ></td>
+                  >
+                    {filteredTasks.map(task => {
+                      if (
+                        dayjs(task.start).format('DD-MM-YY') ===
+                          day.format('DD-MM-YY') &&
+                        dayjs(task.start).format('HH:mm') !== '00:00' &&
+                        dayjs(day).hour(hour).minute(0).format('HH:mm') <=
+                          dayjs(task.start).format('HH:mm') &&
+                        dayjs(task.start).format('HH:mm') <=
+                          dayjs(day).hour(hour).minute(29).format('HH:mm')
+                      ) {
+                        return (
+                          <Task
+                            key={task._id}
+                            title={task.title}
+                            start={dayjs(task.start).format('HH:mm')}
+                          />
+                        );
+                      }
+                    })}
+                  </td>
                 ))}
               </tr>
 
@@ -83,7 +121,26 @@ const WeekGrid = () => {
                         ? 'bg-slate-100'
                         : ''
                     }`}
-                  ></td>
+                  >
+                    {filteredTasks.map(task => {
+                      if (
+                        dayjs(task.start).format('DD-MM-YY') ===
+                          day.format('DD-MM-YY') &&
+                        dayjs(day).hour(hour).minute(30).format('HH:mm') <=
+                          dayjs(task.start).format('HH:mm') &&
+                        dayjs(task.start).format('HH:mm') <=
+                          dayjs(day).hour(hour).minute(59).format('HH:mm')
+                      ) {
+                        return (
+                          <Task
+                            key={task._id}
+                            title={task.title}
+                            start={dayjs(task.start).format('HH:mm')}
+                          />
+                        );
+                      }
+                    })}
+                  </td>
                 ))}
               </tr>
             </React.Fragment>

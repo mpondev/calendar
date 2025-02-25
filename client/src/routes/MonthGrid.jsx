@@ -37,7 +37,7 @@ const MonthGrid = () => {
 
         <tbody>
           {monthGrid.map((row, i) => (
-            <tr key={i}>
+            <tr key={i} className="h-1/6">
               {row.map(day => (
                 <DailyCell
                   day={day}
