@@ -1,22 +1,69 @@
+import dayjs from 'dayjs';
 import { useDateStore } from '../store/dateStore';
+import { mockTasks } from '../data/fakeData';
+import React from 'react';
 
 const ListGrid = () => {
   const { date } = useDateStore();
 
-  // Temporary return statement. Once events are implemented, this will be updated by adding events per day to the grid.
+  const weekDay = date.day();
+  const weekGrid = Array.from({ length: 7 }, (_, i) =>
+    date.clone().subtract(weekDay, 'day').add(i, 'day')
+  );
+
+  const filteredTasks = mockTasks.filter(task =>
+    weekGrid.some(
+      day => dayjs(task.start).format('DD-MM-YY') === day.format('DD-MM-YY')
+    )
+  );
 
   return (
     <div className="flex-1 overflow-y-auto shadow-sm">
       <table className="h-full w-full table-fixed border-separate border-spacing-0 border-1 border-gray-300">
-        <thead className="sticky top-0 bg-slate-100">
-          <tr className="h-8">
-            <th className="flex justify-between border-1 border-gray-300 px-4 py-2 font-medium">
-              <span>{date.format('dddd')}</span>
-              <span>{date.format('D-MMM-YYYY')}</span>
-            </th>
+        <thead>
+          <tr>
+            <th></th>
           </tr>
         </thead>
-        <tbody></tbody>
+
+        <tbody className="flex flex-col">
+          {weekGrid.map(
+            day =>
+              filteredTasks.some(
+                task =>
+                  dayjs(task.start).format('DD-MM-YY') ===
+                  day.format('DD-MM-YY')
+              ) && (
+                <React.Fragment key={day.format('DD-MM-YY')}>
+                  <tr>
+                    <th className="flex justify-between border-b-1 border-gray-300 bg-slate-200 px-3.5 py-1.5 font-medium">
+                      <span>{dayjs(day).format('dddd')} </span>
+                      <span>{dayjs(day).format('DD-MMM-YYYY')}</span>
+                    </th>
+                  </tr>
+                  {filteredTasks.map(
+                    task =>
+                      dayjs(task.start).format('DD-MM-YY') ===
+                        dayjs(day).format('DD-MM-YY') && (
+                        <tr
+                          key={task._id}
+                          className="px-3.5 py-1.5 border-b-1 border-gray-300 last:border-b-0"
+                        >
+                          <td className="flex">
+                            <span className="w-1/8">
+                              {dayjs(task.start).format('HH:mm') === '00:00'
+                                ? 'all-day'
+                                : dayjs(task.start).format('HH:mm')}
+                            </span>
+                            <span className="w-7/8">{task.title}</span>
+                          </td>
+                        </tr>
+                      )
+                  )}
+                </React.Fragment>
+              )
+          )}
+        </tbody>
       </table>
     </div>
   );
