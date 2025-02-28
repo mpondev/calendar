@@ -1,9 +1,12 @@
+import React from 'react';
 import dayjs from 'dayjs';
+import { useUser } from '@clerk/clerk-react';
+
 import { useDateStore } from '../store/dateStore';
 import { mockTasks } from '../data/fakeData';
-import React from 'react';
 
 const ListGrid = () => {
+  const { isSignedIn } = useUser();
   const { date } = useDateStore();
 
   const weekDay = date.day();
@@ -11,11 +14,13 @@ const ListGrid = () => {
     date.clone().subtract(weekDay, 'day').add(i, 'day')
   );
 
-  const filteredTasks = mockTasks.filter(task =>
-    weekGrid.some(
-      day => dayjs(task.start).format('DD-MM-YY') === day.format('DD-MM-YY')
-    )
-  );
+  const filteredTasks = isSignedIn
+    ? mockTasks.filter(task =>
+        weekGrid.some(
+          day => dayjs(task.start).format('DD-MM-YY') === day.format('DD-MM-YY')
+        )
+      )
+    : [];
 
   return (
     <div className="flex-1 overflow-y-auto shadow-sm">

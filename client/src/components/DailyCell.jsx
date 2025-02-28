@@ -1,11 +1,13 @@
 import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
+import { useUser } from '@clerk/clerk-react';
 
 import { useDateStore } from '../store/dateStore.js';
 import Task from './Task.jsx';
 import { mockTasks } from '../data/fakeData.js';
 
 const DailyCell = ({ day }) => {
+  const { isSignedIn } = useUser();
   const { date } = useDateStore();
 
   const isCurrentDay = day.format('DD-MM-YY') === dayjs().format('DD-MM-YY');
@@ -27,19 +29,20 @@ const DailyCell = ({ day }) => {
           </p>
         </header>
         <div className="mx-1 flex-1">
-          {mockTasks.map(task => {
-            if (
-              dayjs(task.start).format('DD-MM-YY') === day.format('DD-MM-YY')
-            ) {
-              return (
-                <Task
-                  key={task._id}
-                  start={dayjs(task.start).format('HH:mm')}
-                  title={task.title}
-                />
-              );
-            }
-          })}
+          {isSignedIn &&
+            mockTasks.map(task => {
+              if (
+                dayjs(task.start).format('DD-MM-YY') === day.format('DD-MM-YY')
+              ) {
+                return (
+                  <Task
+                    key={task._id}
+                    start={dayjs(task.start).format('HH:mm')}
+                    title={task.title}
+                  />
+                );
+              }
+            })}
         </div>
       </div>
     </td>
