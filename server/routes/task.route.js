@@ -1,11 +1,17 @@
 import express from 'express';
-import Task from '../models/task.model.js';
+
+import {
+  createTask,
+  deleteTask,
+  getTask,
+  getTasks,
+} from '../controllers/task.controller.js';
 
 const router = express.Router();
 
-router.get('/', async (req, res) => {
-  const tasks = await Task.find();
-  res.status(200).send(tasks);
-});
+router.get('/', getTasks);
+router.get('/:id', getTask);
+router.post('/', createTask);
+router.delete('/:id', deleteTask);
 
 export default router;
