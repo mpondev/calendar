@@ -3,12 +3,14 @@ import cors from 'cors';
 
 import userRouter from './routes/user.route.js';
 import taskRouter from './routes/task.route.js';
+import webhookRouter from './routes/webhook.route.js';
 
 import errorHandler from './middlewares/errorMiddleware.js';
 
 const app = express();
 
 app.use(cors());
+app.use('/api/v1/webhooks', webhookRouter);
 app.use(express.json());
 
 app.use(errorHandler);
