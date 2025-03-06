@@ -3,12 +3,20 @@ import {
   SignedIn,
   SignedOut,
   SignInButton,
+  useAuth,
   UserButton,
 } from '@clerk/clerk-react';
 
 import CalHeader from '../components/CalHeader';
+import { useEffect } from 'react';
 
 const MainLayout = () => {
+  const { getToken } = useAuth();
+
+  useEffect(() => {
+    getToken().then(token => console.log(token));
+  }, []);
+
   return (
     <div className="flex h-screen w-screen">
       <div className="absolute top-6 right-6 cursor-pointer">
