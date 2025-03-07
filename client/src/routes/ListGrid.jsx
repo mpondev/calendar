@@ -3,11 +3,12 @@ import dayjs from 'dayjs';
 import { useUser } from '@clerk/clerk-react';
 
 import { useDateStore } from '../store/dateStore';
-import { mockTasks } from '../data/fakeData';
+import { useTaskStore } from '../store/taskStore';
 
 const ListGrid = () => {
   const { isSignedIn } = useUser();
   const { date } = useDateStore();
+  const { tasks } = useTaskStore();
 
   const weekDay = date.day();
   const weekGrid = Array.from({ length: 7 }, (_, i) =>
@@ -15,7 +16,7 @@ const ListGrid = () => {
   );
 
   const filteredTasks = isSignedIn
-    ? mockTasks.filter(task =>
+    ? tasks.filter(task =>
         weekGrid.some(
           day => dayjs(task.start).format('DD-MM-YY') === day.format('DD-MM-YY')
         )

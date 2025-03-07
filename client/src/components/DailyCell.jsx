@@ -4,9 +4,8 @@ import { useUser } from '@clerk/clerk-react';
 
 import { useDateStore } from '../store/dateStore.js';
 import Task from './Task.jsx';
-import { mockTasks } from '../data/fakeData.js';
 
-const DailyCell = ({ day }) => {
+const DailyCell = ({ day, tasks }) => {
   const { isSignedIn } = useUser();
   const { date } = useDateStore();
 
@@ -30,7 +29,7 @@ const DailyCell = ({ day }) => {
         </header>
         <div className="mx-1 flex-1">
           {isSignedIn &&
-            mockTasks.map(task => {
+            tasks.map(task => {
               if (
                 dayjs(task.start).format('DD-MM-YY') === day.format('DD-MM-YY')
               ) {
@@ -51,6 +50,7 @@ const DailyCell = ({ day }) => {
 
 DailyCell.propTypes = {
   day: PropTypes.object.isRequired,
+  tasks: PropTypes.array,
 };
 
 export default DailyCell;

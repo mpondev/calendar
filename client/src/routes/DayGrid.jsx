@@ -3,17 +3,18 @@ import dayjs from 'dayjs';
 import { useUser } from '@clerk/clerk-react';
 
 import { useDateStore } from '../store/dateStore';
+import { useTaskStore } from '../store/taskStore';
 import Task from '../components/Task';
-import { mockTasks } from '../data/fakeData';
 
 const DayGrid = () => {
   const { isSignedIn } = useUser();
   const { date } = useDateStore();
+  const { tasks } = useTaskStore();
 
   const dayHours = Array.from({ length: 24 }, (_, i) => i);
 
   const filteredTasks = isSignedIn
-    ? mockTasks.filter(
+    ? tasks.filter(
         task => dayjs(task.start).format('DD-MM-YY') === date.format('DD-MM-YY')
       )
     : [];
